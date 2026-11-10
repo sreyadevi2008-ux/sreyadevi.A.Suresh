@@ -172,31 +172,102 @@ FEATURED PROJECTS
           </motion.div>
 
           {/* Right Visual Column: Profile Photo with glowing card */}
+          {/* Right Visual Column — Modern Overlap UI */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex justify-center w-full"
           >
-            <div className="relative group">
-              {/* Outer glow ring */}
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-violet-600 via-sky-400 to-indigo-500 opacity-60 blur-xl group-hover:opacity-80 transition-opacity duration-500" />
-              {/* Card */}
-              <div className="relative rounded-3xl overflow-hidden border border-sky-500/30 shadow-[0_0_60px_rgba(56,189,248,0.2)] bg-[#0b1221]">
+            {/* Outer container with extra padding for overlapping cards */}
+            <div className="relative w-72 sm:w-80 lg:w-96" style={{ height: '26rem' }}>
+
+              {/* ── Decorative spinning rings ── */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[340px] h-[340px] rounded-full border border-violet-500/20 animate-[spin_18s_linear_infinite]" />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[290px] h-[290px] rounded-full border border-sky-400/15 animate-[spin_12s_linear_infinite_reverse]" />
+              </div>
+
+              {/* ── Deep glow behind card ── */}
+              <div className="absolute inset-4 rounded-[2rem] bg-gradient-to-br from-violet-600/30 via-sky-500/20 to-indigo-600/30 blur-2xl" />
+
+              {/* ── Main Photo Card ── */}
+              <div className="absolute inset-0 rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(99,102,241,0.3)] bg-[#070f1d]">
                 <img
                   src="/profile.jpg"
                   alt="Sreya Devi"
-                  className="w-72 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[26rem] object-cover object-top"
+                  className="w-full h-full object-cover object-top"
                 />
-                {/* Bottom overlay badge */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#060d1a]/90 via-[#060d1a]/50 to-transparent px-5 py-4">
-                  <p className="text-white font-semibold text-sm tracking-wide">{personalData.name}</p>
-                  <p className="text-accent-cyan text-xs font-mono mt-0.5">{personalData.roles[0]}</p>
+                {/* Gradient overlay at bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#040c18]/80 via-transparent to-transparent" />
+              </div>
+
+              {/* ── Floating card: TOP-LEFT — Available badge ── */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+                className="absolute -top-4 -left-6 z-20 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#0d1f38]/90 border border-emerald-500/30 shadow-[0_4px_24px_rgba(16,185,129,0.15)] backdrop-blur-md"
+              >
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                </span>
+                <span className="text-emerald-400 text-xs font-semibold tracking-wide">Available for work</span>
+              </motion.div>
+
+              {/* ── Floating card: TOP-RIGHT — AI badge ── */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+                className="absolute -top-5 -right-6 z-20 flex flex-col items-center px-3 py-2.5 rounded-2xl bg-gradient-to-br from-violet-600/80 to-indigo-700/80 border border-violet-400/30 shadow-[0_4px_30px_rgba(139,92,246,0.4)] backdrop-blur-md"
+              >
+                <span className="text-2xl">🤖</span>
+                <span className="text-white text-[10px] font-bold tracking-widest mt-0.5">AI & ML</span>
+              </motion.div>
+
+              {/* ── Floating card: BOTTOM-LEFT — Projects stat ── */}
+              <motion.div
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+                className="absolute -bottom-5 -left-7 z-20 px-4 py-3 rounded-2xl bg-[#0d1f38]/90 border border-sky-500/30 shadow-[0_8px_32px_rgba(56,189,248,0.2)] backdrop-blur-md"
+              >
+                <p className="text-sky-400 text-xl font-extrabold leading-none">3+</p>
+                <p className="text-slate-400 text-[10px] font-medium mt-1 tracking-wide">Projects Built</p>
+              </motion.div>
+
+              {/* ── Floating card: BOTTOM-RIGHT — Tech stack pill ── */}
+              <motion.div
+                initial={{ opacity: 0, x: 15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.3, duration: 0.6 }}
+                className="absolute -bottom-4 -right-6 z-20 flex flex-col gap-1.5 px-3 py-2.5 rounded-2xl bg-[#0d1f38]/90 border border-indigo-500/30 shadow-[0_8px_32px_rgba(99,102,241,0.2)] backdrop-blur-md"
+              >
+                {['Python', 'C', 'AI'].map((tag) => (
+                  <span key={tag} className="text-[10px] font-semibold text-indigo-300 bg-indigo-500/15 rounded-full px-2 py-0.5 text-center tracking-wide">
+                    {tag}
+                  </span>
+                ))}
+              </motion.div>
+
+              {/* ── Name badge at photo bottom ── */}
+              <div className="absolute bottom-3 left-4 right-4 z-10 flex items-center justify-between">
+                <div>
+                  <p className="text-white font-bold text-sm tracking-wide drop-shadow">{personalData.name}</p>
+                  <p className="text-accent-cyan text-[11px] font-mono mt-0.5 drop-shadow">{personalData.roles[0]}</p>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-violet-500 to-sky-400 flex items-center justify-center shadow-lg">
+                  <span className="text-white text-xs font-bold">SD</span>
                 </div>
               </div>
-              {/* Floating dot accents */}
-              <div className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-violet-500 blur-sm opacity-80" />
-              <div className="absolute -bottom-3 -left-3 w-5 h-5 rounded-full bg-sky-400 blur-sm opacity-70" />
+
+              {/* ── Decorative corner dots ── */}
+              <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-sky-400 opacity-60 animate-pulse" />
+              <div className="absolute bottom-10 left-6 w-1.5 h-1.5 rounded-full bg-violet-400 opacity-50 animate-pulse" style={{ animationDelay: '0.5s' }} />
             </div>
           </motion.div>
         </div>
