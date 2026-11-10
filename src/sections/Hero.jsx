@@ -1,65 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Terminal, Sparkles, FolderGit2, Brain, Cpu, Zap } from 'lucide-react';
+import { ArrowRight, Download, Sparkles, FolderGit2, Brain, Cpu } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 import MagneticButton from '../components/MagneticButton';
 
-/* ─── AI Futuristic keyframe styles ─── */
-const aiStyles = `
-  @keyframes scanline {
-    0%   { top: -8%; opacity: 0.7; }
-    100% { top: 108%; opacity: 0; }
-  }
-  @keyframes rotateCW  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
-  @keyframes rotateCCW { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
-  @keyframes dataStream {
-    0%   { opacity: 0; transform: translateY(-20px); }
-    20%  { opacity: 1; }
-    80%  { opacity: 1; }
-    100% { opacity: 0; transform: translateY(20px); }
-  }
-  @keyframes holoPulse {
-    0%, 100% { opacity: 0.4; box-shadow: 0 0 20px rgba(56,189,248,0.3); }
-    50%       { opacity: 0.9; box-shadow: 0 0 40px rgba(56,189,248,0.7), 0 0 80px rgba(99,102,241,0.4); }
-  }
-  @keyframes cornerSpark {
-    0%,100% { opacity:1; transform:scale(1);   }
-    50%     { opacity:.4; transform:scale(1.6); }
-  }
-  @keyframes floatY {
-    0%,100% { transform: translateY(0px);   }
-    50%     { transform: translateY(-8px);  }
-  }
-  @keyframes glitchBar {
-    0%,96%   { opacity: 0; }
-    97%      { opacity: 0.6; transform: translateX(-3px); }
-    98%      { opacity: 0.4; transform: translateX(4px); }
-    100%     { opacity: 0; }
-  }
-  .ai-scanline   { animation: scanline 3s linear infinite; }
-  .ai-rotateCW   { animation: rotateCW  20s linear infinite; }
-  .ai-rotateCCW  { animation: rotateCCW 14s linear infinite; }
-  .ai-rotateCW2  { animation: rotateCW  32s linear infinite; }
-  .ai-holo       { animation: holoPulse 2.5s ease-in-out infinite; }
-  .ai-floatY     { animation: floatY 4s ease-in-out infinite; }
-  .ai-glitch     { animation: glitchBar 5s linear infinite; }
-  .ai-corner-tl  { animation: cornerSpark 1.4s ease-in-out infinite; }
-  .ai-corner-tr  { animation: cornerSpark 1.4s ease-in-out infinite 0.35s; }
-  .ai-corner-bl  { animation: cornerSpark 1.4s ease-in-out infinite 0.7s; }
-  .ai-corner-br  { animation: cornerSpark 1.4s ease-in-out infinite 1.05s; }
-  .data-row-1    { animation: dataStream 3.2s ease-in-out infinite; }
-  .data-row-2    { animation: dataStream 3.2s ease-in-out infinite 1.1s; }
-  .data-row-3    { animation: dataStream 3.2s ease-in-out infinite 2.1s; }
-`;
-
 export default function Hero() {
+  const heroRoles = [
+    "Aspiring AI Engineer",
+    "Machine Learning Enthusiast",
+    "Python Developer"
+  ];
+
   // Rotating / Typing role state
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentRole = personalData.roles[roleIndex];
+    const currentRole = heroRoles[roleIndex];
     const typingSpeed = isDeleting ? 40 : 80;
 
     const timeout = setTimeout(() => {
@@ -67,15 +25,14 @@ export default function Hero() {
         if (displayedText.length < currentRole.length) {
           setDisplayedText(currentRole.substring(0, displayedText.length + 1));
         } else {
-          // Pause before deleting
-          setTimeout(() => setIsDeleting(true), 1800);
+          setTimeout(() => setIsDeleting(true), 2000);
         }
       } else {
         if (displayedText.length > 0) {
           setDisplayedText(currentRole.substring(0, displayedText.length - 1));
         } else {
           setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % personalData.roles.length);
+          setRoleIndex((prev) => (prev + 1) % heroRoles.length);
         }
       }
     }, typingSpeed);
@@ -91,7 +48,6 @@ export default function Hero() {
 
   const handleDownloadResume = (e) => {
     e.preventDefault();
-    // Generate a downloadable plain-text / printable resume for Sreya Devi
     const resumeContent = `
 ======================================================
                   SREYA DEVI
@@ -139,67 +95,73 @@ FEATURED PROJECTS
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] pt-28 pb-16 lg:pt-36 lg:pb-24 flex items-center justify-center overflow-hidden"
+      className="relative min-h-[95vh] pt-28 pb-16 lg:pt-36 lg:pb-24 flex items-center justify-center overflow-hidden"
     >
-      <style>{aiStyles}</style>
-      {/* Background Soft Glow Spots */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-blue/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-cyan/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/4 left-10 w-[420px] h-[420px] bg-violet-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-[420px] h-[420px] bg-cyan-500/12 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Text Column (matches reference screenshot styling exactly) */}
+          
+          {/* ═══════════════════════════════════════════
+               LEFT — HERO TEXT & CALL TO ACTIONS
+          ═══════════════════════════════════════════ */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 flex flex-col items-start text-left"
           >
-            {/* Small cyan uppercase eyebrow text */}
-            <div className="inline-flex items-center gap-2 mb-3">
-              <span className="text-accent-cyan font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase">
-                {personalData.eyebrow}
+            {/* Small uppercase eyebrow text */}
+            <div className="inline-flex items-center gap-2 mb-3 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.15)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <span className="font-mono text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase">
+                HELLO, WORLD! I'M
               </span>
             </div>
 
-            {/* Large bold white name */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-3">
-              {personalData.name}
+            {/* Very large name */}
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[1.04] mb-3">
+              <span className="bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
+                Sreya Devi
+              </span>
             </h1>
 
-            {/* Rotating / Typing Role Heading */}
+            {/* Typing Animation Role */}
             <div className="h-10 sm:h-14 mb-4 flex items-center">
-              <span className="text-2xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300 bg-clip-text text-transparent">
+              <span className="text-2xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-to-r from-violet-400 via-purple-300 to-cyan-300 bg-clip-text text-transparent">
                 {displayedText}
               </span>
-              <span className="inline-block w-1 h-7 sm:h-9 bg-accent-cyan ml-1.5 animate-pulse" />
+              <span className="inline-block w-1 h-7 sm:h-10 bg-cyan-400 ml-1.5 animate-pulse rounded-full" />
             </div>
 
-            {/* Short Bio */}
+            {/* Subtitle / Bio */}
             <p className="text-slate-300 text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed mb-6 font-normal">
-              {personalData.shortBio}
+              B.Tech CSE (Artificial Intelligence) Student | Exploring AI, Machine Learning & Software Development.
             </p>
 
-            {/* Skill tags as pill-shaped chips with dark blue background and blue text */}
+            {/* Skill tags */}
             <div className="flex flex-wrap items-center gap-2.5 mb-8">
-              {personalData.heroChips.map((chip, idx) => (
+              {["Python", "C Programming", "AI & ML"].map((chip, idx) => (
                 <span
                   key={idx}
-                  className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#0e172a] text-[#38bdf8] border border-sky-800/40 shadow-[0_0_12px_rgba(56,189,248,0.1)] transition-all hover:border-sky-500/60 hover:scale-105"
+                  className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium bg-[#0f172a]/90 text-cyan-300 border border-cyan-500/30 shadow-[0_0_15px_rgba(34,211,238,0.12)] transition-all hover:border-cyan-400 hover:scale-105 backdrop-blur-md"
                 >
                   {chip}
                 </span>
               ))}
             </div>
 
-            {/* Two CTA Buttons: View Projects (filled) and Download Resume (outline) */}
+            {/* Two CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 w-full sm:w-auto">
-              {/* Filled View Projects Button */}
+              {/* View Projects (Gradient Purple) */}
               <MagneticButton>
                 <a
                   href="#projects"
                   onClick={handleScrollToProjects}
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white font-semibold text-sm sm:text-base shadow-glow-violet hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 text-white font-semibold text-sm sm:text-base shadow-[0_0_25px_rgba(139,92,246,0.45)] hover:shadow-[0_0_35px_rgba(139,92,246,0.7)] transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                 >
                   <FolderGit2 className="w-4 h-4 sm:w-5 sm:h-5" />
                   <span>View Projects</span>
@@ -207,13 +169,13 @@ FEATURED PROJECTS
                 </a>
               </MagneticButton>
 
-              {/* Outline Download Resume Button */}
+              {/* Download Resume (Outline Glass) */}
               <MagneticButton>
                 <button
                   onClick={handleDownloadResume}
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-2xl bg-[#111b2e]/80 hover:bg-[#16233b] border border-accent-blue/40 hover:border-accent-cyan/60 text-slate-100 font-semibold text-sm sm:text-base backdrop-blur-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
+                  className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-white/[0.04] hover:bg-white/[0.09] border border-white/15 hover:border-cyan-400/50 text-slate-100 font-semibold text-sm sm:text-base backdrop-blur-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-[0_4px_20px_rgba(0,0,0,0.2)]"
                 >
-                  <Download className="w-4 h-4 sm:w-5 sm:h-5 text-accent-cyan" />
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-300" />
                   <span>Download Resume</span>
                 </button>
               </MagneticButton>
@@ -221,264 +183,92 @@ FEATURED PROJECTS
           </motion.div>
 
           {/* ═══════════════════════════════════════════
-               RIGHT — AI Futuristic Profile Visual
+               RIGHT — ARCH SHAPE PHOTO WITH FLOATING CARDS
           ═══════════════════════════════════════════ */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex justify-center w-full"
           >
-            {/* Root container — extra space for overlap cards */}
-            <div className="relative ai-floatY" style={{ width: 320, height: 420 }}>
+            <div className="relative w-[300px] sm:w-[340px] md:w-[380px] h-[440px] sm:h-[480px]">
+              
+              {/* Outer Glow Halo behind Arch */}
+              <div className="absolute inset-0 rounded-t-[170px] sm:rounded-t-[190px] rounded-b-3xl bg-gradient-to-tr from-violet-600 via-fuchsia-500 to-cyan-400 blur-2xl opacity-40 scale-105 pointer-events-none" />
 
-              {/* ░░ RING LAYER 1 — slow outer orbit ░░ */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div
-                  className="ai-rotateCW2"
-                  style={{
-                    width: 420, height: 420,
-                    borderRadius: '50%',
-                    border: '1px dashed rgba(99,102,241,0.18)',
-                    position: 'absolute',
-                  }}
-                />
-              </div>
+              {/* Glowing Gradient Border Wrapper */}
+              <div className="relative w-full h-full p-[2px] rounded-t-[170px] sm:rounded-t-[190px] rounded-b-3xl bg-gradient-to-tr from-violet-600 via-purple-500 to-cyan-400 shadow-[0_0_50px_rgba(139,92,246,0.35)]">
+                
+                {/* Arch Inner Card */}
+                <div className="relative w-full h-full rounded-t-[168px] sm:rounded-t-[188px] rounded-b-[22px] overflow-hidden bg-[#070b16]">
+                  
+                  {/* Sreya's Photo with clean solid black background */}
+                  <img
+                    src="/profile.jpg"
+                    alt="Sreya Devi"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out hover:scale-105"
+                  />
 
-              {/* ░░ RING LAYER 2 — mid orbit ░░ */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div
-                  className="ai-rotateCW"
-                  style={{
-                    width: 360, height: 360, borderRadius: '50%',
-                    border: '1.5px solid rgba(56,189,248,0.15)',
-                    position: 'absolute',
-                  }}
-                />
-              </div>
+                  {/* Bottom subtle gradient shadow for badge clarity */}
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050814]/90 via-[#050814]/40 to-transparent pointer-events-none" />
 
-              {/* ░░ RING LAYER 3 — inner reverse ░░ */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div
-                  className="ai-rotateCCW"
-                  style={{
-                    width: 300, height: 300, borderRadius: '50%',
-                    border: '1px solid rgba(139,92,246,0.2)',
-                    position: 'absolute',
-                  }}
-                />
-              </div>
-
-              {/* ░░ AMBIENT GLOW ░░ */}
-              <div
-                className="ai-holo"
-                style={{
-                  position: 'absolute', inset: 8,
-                  borderRadius: 28,
-                  background: 'radial-gradient(ellipse at 60% 40%, rgba(99,102,241,0.25) 0%, rgba(56,189,248,0.1) 60%, transparent 100%)',
-                  filter: 'blur(18px)',
-                }}
-              />
-
-              {/* ░░ MAIN PHOTO CARD ░░ */}
-              <div
-                style={{
-                  position: 'absolute', inset: 0,
-                  borderRadius: 28,
-                  overflow: 'hidden',
-                  border: 'none',
-                  boxShadow: '0 0 80px rgba(99,102,241,0.35), 0 0 160px rgba(56,189,248,0.12)',
-                  background: 'linear-gradient(160deg, #040c18 0%, #071122 50%, #060d1a 100%)',
-                }}
-              >
-                {/* AI grid pattern */}
-                <div style={{
-                  position: 'absolute', inset: 0, zIndex: 0, opacity: 0.06,
-                  backgroundImage: 'linear-gradient(rgba(56,189,248,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.8) 1px, transparent 1px)',
-                  backgroundSize: '28px 28px',
-                }} />
-
-                {/* Profile image with clean dark background */}
-                <img
-                  src="/profile.jpg"
-                  alt="Sreya Devi"
-                  style={{
-                    position: 'relative', zIndex: 1,
-                    width: '100%', height: '100%',
-                    objectFit: 'cover', objectPosition: 'center top',
-                    borderRadius: 28,
-                  }}
-                />
-
-                {/* ── Corner HUD brackets ── */}
-                {/* Top-left */}
-                <div className="ai-corner-tl" style={{ position:'absolute', top:10, left:10, width:18, height:18, borderTop:'2px solid #38bdf8', borderLeft:'2px solid #38bdf8' }} />
-                {/* Top-right */}
-                <div className="ai-corner-tr" style={{ position:'absolute', top:10, right:10, width:18, height:18, borderTop:'2px solid #818cf8', borderRight:'2px solid #818cf8' }} />
-                {/* Bottom-left */}
-                <div className="ai-corner-bl" style={{ position:'absolute', bottom:10, left:10, width:18, height:18, borderBottom:'2px solid #38bdf8', borderLeft:'2px solid #38bdf8' }} />
-                {/* Bottom-right */}
-                <div className="ai-corner-br" style={{ position:'absolute', bottom:10, right:10, width:18, height:18, borderBottom:'2px solid #818cf8', borderRight:'2px solid #818cf8' }} />
-
-                {/* ── Bottom glass HUD strip ── */}
-                <div
-                  style={{
-                    position: 'absolute', bottom: 0, left: 0, right: 0,
-                    background: 'linear-gradient(to top, rgba(4,12,24,0.95) 0%, rgba(4,12,24,0.6) 60%, transparent 100%)',
-                    padding: '20px 16px 14px',
-                    backdropFilter: 'blur(4px)',
-                  }}
-                >
-                  <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+                  {/* Name Tag at bottom */}
+                  <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between z-10">
                     <div>
-                      <p style={{ color:'#fff', fontWeight:700, fontSize:13, letterSpacing:'0.05em', margin:0 }}>{personalData.name}</p>
-                      <p style={{ color:'#38bdf8', fontSize:10, fontFamily:'monospace', marginTop:3, letterSpacing:'0.1em' }}>{personalData.roles[0]}</p>
+                      <p className="text-white font-bold text-sm tracking-wide">{personalData.name}</p>
+                      <p className="text-cyan-400 text-xs font-mono font-medium mt-0.5">B.Tech CSE (AI)</p>
                     </div>
-                    {/* Mini waveform bars */}
-                    <div style={{ display:'flex', alignItems:'flex-end', gap:2 }}>
-                      {[6,10,7,13,9,5,11,8].map((h, i) => (
-                        <div
-                          key={i}
-                          style={{
-                            width: 3, height: h,
-                            background: i % 2 === 0 ? '#38bdf8' : '#818cf8',
-                            borderRadius: 2,
-                            opacity: 0.7,
-                            animation: `holoPulse ${0.6 + i * 0.1}s ease-in-out infinite`,
-                            animationDelay: `${i * 0.08}s`,
-                          }}
-                        />
-                      ))}
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-violet-500 to-cyan-400 flex items-center justify-center text-white text-xs font-extrabold shadow-lg">
+                      SD
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* ░░ FLOATING CARD — TOP LEFT: Available ░░ */}
+              {/* ░░ FLOATING CARD 1: "Available for Work" (Top-Left) ░░ */}
               <motion.div
-                initial={{ opacity: 0, y: -12, x: -8 }}
+                initial={{ opacity: 0, y: -10, x: -10 }}
                 animate={{ opacity: 1, y: 0, x: 0 }}
-                transition={{ delay: 0.9, duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  position: 'absolute', top: -18, left: -32, zIndex: 30,
-                  display: 'flex', alignItems: 'center', gap: 8,
-                  padding: '8px 14px',
-                  borderRadius: 14,
-                  background: 'rgba(6,20,42,0.92)',
-                  border: '1px solid rgba(16,185,129,0.4)',
-                  boxShadow: '0 4px 24px rgba(16,185,129,0.2)',
-                  backdropFilter: 'blur(12px)',
-                }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="absolute -top-4 -left-6 sm:-left-8 z-20 flex items-center gap-2.5 px-3.5 py-2 rounded-2xl bg-[#0b1329]/90 border border-emerald-500/40 shadow-[0_8px_30px_rgba(16,185,129,0.2)] backdrop-blur-xl"
               >
-                <span style={{ position:'relative', display:'flex', width:10, height:10 }}>
-                  <span className="animate-ping" style={{ position:'absolute', inset:0, borderRadius:'50%', background:'#10b981', opacity:0.6 }} />
-                  <span style={{ position:'relative', width:10, height:10, borderRadius:'50%', background:'#10b981', display:'block' }} />
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
                 </span>
-                <span style={{ color:'#34d399', fontSize:11, fontWeight:700, letterSpacing:'0.08em' }}>AVAILABLE FOR WORK</span>
+                <span className="text-emerald-400 text-xs font-semibold tracking-wide">Available for Work</span>
               </motion.div>
 
-              {/* ░░ FLOATING CARD — TOP RIGHT: AI Core ░░ */}
+              {/* ░░ FLOATING CARD 2: "AI CORE" (Top-Right) ░░ */}
               <motion.div
-                initial={{ opacity: 0, y: -12, x: 8 }}
-                animate={{ opacity: 1, y: 0, x: 0 }}
-                transition={{ delay: 1.0, duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  position: 'absolute', top: -22, right: -28, zIndex: 30,
-                  display: 'flex', flexDirection: 'column', alignItems: 'center',
-                  padding: '10px 14px',
-                  borderRadius: 16,
-                  background: 'linear-gradient(135deg, rgba(99,102,241,0.85) 0%, rgba(139,92,246,0.85) 100%)',
-                  border: '1px solid rgba(167,139,250,0.5)',
-                  boxShadow: '0 6px 32px rgba(99,102,241,0.45)',
-                  backdropFilter: 'blur(10px)',
-                  gap: 4,
-                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="absolute -top-5 -right-5 sm:-right-7 z-20 flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-violet-600/90 to-purple-700/90 border border-violet-400/40 shadow-[0_8px_32px_rgba(139,92,246,0.4)] backdrop-blur-xl"
               >
-                <Brain size={18} color="#fff" />
-                <span style={{ color:'#e0e7ff', fontSize:9, fontWeight:800, letterSpacing:'0.15em' }}>AI CORE</span>
+                <Brain className="w-4 h-4 text-white" />
+                <span className="text-white text-xs font-extrabold tracking-wider">AI CORE</span>
               </motion.div>
 
-              {/* ░░ FLOATING CARD — BOTTOM LEFT: Stats ░░ */}
+              {/* ░░ FLOATING CARD 3: "PROJECTS 3+" (Bottom-Left) ░░ */}
               <motion.div
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.15, duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  position: 'absolute', bottom: -22, left: -30, zIndex: 30,
-                  padding: '12px 16px',
-                  borderRadius: 18,
-                  background: 'rgba(6,20,42,0.92)',
-                  border: '1px solid rgba(56,189,248,0.35)',
-                  boxShadow: '0 8px 32px rgba(56,189,248,0.2)',
-                  backdropFilter: 'blur(12px)',
-                }}
+                initial={{ opacity: 0, x: -15, y: 10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.6 }}
+                className="absolute -bottom-5 -left-6 sm:-left-8 z-20 px-4 py-2.5 rounded-2xl bg-[#0b1329]/90 border border-cyan-500/40 shadow-[0_8px_32px_rgba(34,211,238,0.2)] backdrop-blur-xl"
               >
-                <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:4 }}>
-                  <Cpu size={12} color="#38bdf8" />
-                  <span style={{ color:'#94a3b8', fontSize:9, letterSpacing:'0.1em', fontFamily:'monospace' }}>PROJECTS</span>
+                <div className="flex items-center gap-1.5 text-cyan-400 text-[11px] font-mono font-medium">
+                  <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>PROJECTS 3+</span>
                 </div>
-                <p style={{ color:'#38bdf8', fontSize:22, fontWeight:900, lineHeight:1, margin:0 }}>3+</p>
-                <div style={{ marginTop:5, height:2, width:40, borderRadius:2, background:'linear-gradient(90deg,#38bdf8,#818cf8)', opacity:0.7 }} />
-              </motion.div>
-
-              {/* ░░ FLOATING CARD — BOTTOM RIGHT: Tech Stack ░░ */}
-              <motion.div
-                initial={{ opacity: 0, x: 16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.25, duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  position: 'absolute', bottom: -18, right: -28, zIndex: 30,
-                  padding: '10px 12px',
-                  borderRadius: 16,
-                  background: 'rgba(6,20,42,0.92)',
-                  border: '1px solid rgba(139,92,246,0.35)',
-                  boxShadow: '0 8px 32px rgba(99,102,241,0.2)',
-                  backdropFilter: 'blur(12px)',
-                  display: 'flex', flexDirection: 'column', gap: 5,
-                }}
-              >
-                {[
-                  { label: 'Python', color: '#fbbf24' },
-                  { label: 'C Lang',  color: '#38bdf8' },
-                  { label: 'AI / ML', color: '#a78bfa' },
-                ].map(({ label, color }) => (
-                  <div key={label} style={{ display:'flex', alignItems:'center', gap:6 }}>
-                    <div style={{ width:6, height:6, borderRadius:'50%', background:color, boxShadow:`0 0 6px ${color}` }} />
-                    <span style={{ color:'#cbd5e1', fontSize:10, fontWeight:600, letterSpacing:'0.06em' }}>{label}</span>
-                  </div>
-                ))}
-              </motion.div>
-
-              {/* ░░ FLOATING CARD — RIGHT MIDDLE: Live signal ░░ */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.35, duration: 0.6 }}
-                style={{
-                  position: 'absolute', top: '38%', right: -44, zIndex: 30,
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-                  padding: '8px 10px',
-                  borderRadius: 12,
-                  background: 'rgba(6,20,42,0.88)',
-                  border: '1px solid rgba(56,189,248,0.25)',
-                  boxShadow: '0 4px 20px rgba(56,189,248,0.15)',
-                  backdropFilter: 'blur(10px)',
-                }}
-              >
-                <Zap size={12} color="#fbbf24" />
-                <div style={{ display:'flex', flexDirection:'column', gap:3 }}>
-                  {['data-row-1','data-row-2','data-row-3'].map((cls, i) => (
-                    <div key={i} className={cls} style={{ width:24, height:1.5, borderRadius:1, background: i===0 ? '#38bdf8' : i===1 ? '#818cf8' : '#10b981', opacity:0.9 }} />
-                  ))}
-                </div>
-                <span style={{ color:'#64748b', fontSize:8, fontFamily:'monospace', letterSpacing:'0.08em' }}>LIVE</span>
+                <div className="text-slate-400 text-[10px] font-medium mt-0.5">Python • ML • C</div>
               </motion.div>
 
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>
   );
 }
-

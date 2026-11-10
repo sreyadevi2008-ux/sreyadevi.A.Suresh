@@ -15,13 +15,13 @@ function StatItem({ stat, index }) {
       viewport={{ once: true }}
       onViewportEnter={start}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="p-5 rounded-2xl bg-[#111b2e]/90 border border-white/5 hover:border-accent-blue/30 backdrop-blur-md transition-all group hover:-translate-y-1"
+      className="p-4 sm:p-5 rounded-2xl bg-[#091124]/90 border border-white/10 hover:border-violet-500/40 backdrop-blur-md transition-all group hover:-translate-y-1 shadow-lg"
     >
       <div className="flex items-baseline gap-1 text-3xl sm:text-4xl font-extrabold text-white">
-        <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-violet-400 via-purple-300 to-cyan-300 bg-clip-text text-transparent">
           {count}
         </span>
-        <span className="text-accent-cyan text-2xl font-bold">{stat.suffix}</span>
+        <span className="text-cyan-400 text-2xl font-bold">{stat.suffix}</span>
       </div>
       <div className="text-sm font-semibold text-slate-200 mt-1">{stat.label}</div>
       <div className="text-xs text-slate-400 mt-0.5">{stat.sublabel}</div>
@@ -56,36 +56,32 @@ export default function About() {
               <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-accent-cyan via-accent-blue to-indigo-500 rounded-3xl blur-md opacity-75 group-hover:opacity-100 transition duration-500" />
 
               {/* Inner Avatar Card */}
-              <div className="relative rounded-3xl bg-[#111b2e] p-6 border border-white/10 text-center flex flex-col items-center max-w-sm">
-                <div className="relative w-36 h-36 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-[#0e172a] border border-accent-blue/30 flex items-center justify-center mb-4 shadow-inner">
-                  {/* Avatar graphic */}
-                  <div className="absolute inset-0 bg-radial-gradient from-accent-blue/30 to-transparent" />
-                  <div className="relative flex flex-col items-center">
-                    <span className="font-mono text-4xl font-extrabold bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                      SD
-                    </span>
-                    <span className="text-[10px] font-mono text-accent-cyan tracking-widest mt-1">
-                      AI STUDENT
-                    </span>
-                  </div>
+              <div className="relative rounded-3xl bg-[#091124]/90 p-6 sm:p-7 border border-white/10 text-center flex flex-col items-center max-w-sm backdrop-blur-xl shadow-2xl">
+                <div className="relative w-40 h-40 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-[#0e172a] border-2 border-violet-500/40 mb-4 shadow-2xl group-hover:border-cyan-400/50 transition-colors">
+                  {/* Photo */}
+                  <img
+                    src="/profile.jpg"
+                    alt={personalData.name}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  />
                   {/* Floating decorative badge */}
-                  <div className="absolute bottom-2 right-2 p-1.5 rounded-lg bg-[#0a0f1c]/90 border border-accent-cyan/40">
-                    <BrainCircuit className="w-4 h-4 text-accent-cyan animate-pulse" />
+                  <div className="absolute bottom-2 right-2 p-1.5 rounded-lg bg-[#070b16]/90 border border-cyan-400/40 shadow-md">
+                    <BrainCircuit className="w-4 h-4 text-cyan-300 animate-pulse" />
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-white">{personalData.name}</h3>
-                <p className="text-xs font-mono text-accent-cyan mt-1">
+                <h3 className="text-xl font-bold text-white tracking-tight">{personalData.name}</h3>
+                <p className="text-xs font-mono text-cyan-300 mt-1 font-semibold">
                   {personalData.degree}
                 </p>
 
-                <div className="mt-4 pt-4 border-t border-white/5 w-full flex flex-col gap-2 text-xs text-slate-300 text-left">
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-accent-blue flex-shrink-0" />
+                <div className="mt-4 pt-4 border-t border-white/5 w-full flex flex-col gap-2.5 text-xs text-slate-300 text-left">
+                  <div className="flex items-center gap-2.5">
+                    <GraduationCap className="w-4 h-4 text-violet-400 flex-shrink-0" />
                     <span>{personalData.institution}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-accent-cyan flex-shrink-0" />
+                  <div className="flex items-center gap-2.5">
+                    <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                     <span>{personalData.contact.location}</span>
                   </div>
                 </div>
