@@ -287,33 +287,28 @@ FEATURED PROJECTS
                   borderRadius: 28,
                   overflow: 'hidden',
                   border: 'none',
-                  boxShadow: '0 0 80px rgba(99,102,241,0.3), 0 0 160px rgba(56,189,248,0.1)',
-                  /* Deep dark background matching portfolio navy */
-                  background: 'linear-gradient(160deg, #040c18 0%, #071122 40%, #0a0f2e 70%, #060d1a 100%)',
+                  boxShadow: '0 0 80px rgba(99,102,241,0.35), 0 0 160px rgba(56,189,248,0.12)',
+                  background: 'linear-gradient(160deg, #040c18 0%, #071122 50%, #060d1a 100%)',
                 }}
               >
-                {/* Dark vignette behind image to absorb white bg */}
+                {/* Subtle AI grid pattern on background */}
                 <div style={{
-                  position: 'absolute', inset: 0,
-                  background: 'radial-gradient(ellipse at 50% 30%, #0d1a3a 0%, #040c18 100%)',
-                  zIndex: 0,
-                }} />
-                {/* Subtle AI grid pattern overlay */}
-                <div style={{
-                  position: 'absolute', inset: 0, zIndex: 1, opacity: 0.07,
-                  backgroundImage: 'linear-gradient(rgba(56,189,248,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.6) 1px, transparent 1px)',
+                  position: 'absolute', inset: 0, zIndex: 0, opacity: 0.06,
+                  backgroundImage: 'linear-gradient(rgba(56,189,248,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.8) 1px, transparent 1px)',
                   backgroundSize: '28px 28px',
                 }} />
-                {/* Profile image — multiply blend removes white, reveals dark bg */}
+
+                {/* Profile image — radial mask fades white bg edges to transparent */}
                 <img
                   src="/profile.jpg"
                   alt="Sreya Devi"
                   style={{
-                    position: 'relative', zIndex: 2,
+                    position: 'relative', zIndex: 1,
                     width: '100%', height: '100%',
                     objectFit: 'cover', objectPosition: 'center top',
-                    mixBlendMode: 'multiply',
-                    filter: 'contrast(1.08) brightness(0.97)',
+                    maskImage: 'radial-gradient(ellipse 82% 88% at 50% 38%, black 55%, rgba(0,0,0,0.6) 72%, transparent 100%)',
+                    WebkitMaskImage: 'radial-gradient(ellipse 82% 88% at 50% 38%, black 55%, rgba(0,0,0,0.6) 72%, transparent 100%)',
+                    filter: 'brightness(1.05) contrast(1.04)',
                   }}
                 />
 
