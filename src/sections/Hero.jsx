@@ -298,43 +298,17 @@ FEATURED PROJECTS
                   backgroundSize: '28px 28px',
                 }} />
 
-                {/* Profile image — untouched, natural colours */}
+                {/* Profile image — white background removed, transparent PNG on dark card */}
                 <img
-                  src="/profile.jpg"
+                  src="/profile.png"
                   alt="Sreya Devi"
                   style={{
                     position: 'relative', zIndex: 1,
                     width: '100%', height: '100%',
                     objectFit: 'cover', objectPosition: 'center top',
-                    filter: 'brightness(1.05) contrast(1.03) saturate(1.05)',
+                    filter: 'brightness(1.03) contrast(1.02) saturate(1.05)',
                   }}
                 />
-
-                {/* ── Targeted edge overlays — cover ONLY the white background areas ── */}
-                {/* Top: covers white above head */}
-                <div style={{
-                  position: 'absolute', top: 0, left: 0, right: 0, height: '32%', zIndex: 2,
-                  background: 'linear-gradient(to bottom, #040c18 0%, #060f1e 30%, rgba(4,12,24,0.7) 60%, transparent 100%)',
-                  pointerEvents: 'none',
-                }} />
-                {/* Left: covers white strip left of hair */}
-                <div style={{
-                  position: 'absolute', top: 0, left: 0, bottom: 0, width: '18%', zIndex: 2,
-                  background: 'linear-gradient(to right, #040c18 0%, rgba(4,12,24,0.8) 40%, transparent 100%)',
-                  pointerEvents: 'none',
-                }} />
-                {/* Right: covers white strip right of hair */}
-                <div style={{
-                  position: 'absolute', top: 0, right: 0, bottom: 0, width: '18%', zIndex: 2,
-                  background: 'linear-gradient(to left, #040c18 0%, rgba(4,12,24,0.8) 40%, transparent 100%)',
-                  pointerEvents: 'none',
-                }} />
-                {/* Bottom: subtle fade for bottom white edge */}
-                <div style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0, height: '18%', zIndex: 2,
-                  background: 'linear-gradient(to top, #040c18 0%, rgba(4,12,24,0.5) 50%, transparent 100%)',
-                  pointerEvents: 'none',
-                }} />
 
                 {/* AI scan line sweep */}
                 <div
