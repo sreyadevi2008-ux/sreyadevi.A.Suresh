@@ -149,7 +149,7 @@ function NeuralOverlay() {
   );
 }
 
-
+export default function Hero() {
   // Rotating / Typing role state
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
