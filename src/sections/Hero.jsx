@@ -52,103 +52,6 @@ const aiStyles = `
   .data-row-3    { animation: dataStream 3.2s ease-in-out infinite 2.1s; }
 `;
 
-/* ─── Neural Brain Overlay Canvas ─── */
-function NeuralOverlay() {
-  const canvasRef = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animId;
-    const W = canvas.width  = canvas.offsetWidth;
-    const H = canvas.height = canvas.offsetHeight;
-
-    /* Generate brain-shaped point cloud */
-    const nodes = Array.from({ length: 90 }, () => {
-      const u = Math.random() * Math.PI * 2;
-      const v = Math.random() * Math.PI - Math.PI / 2;
-      const hemi = Math.random() > 0.5 ? 1 : -1;
-      return {
-        ox: (100 * Math.cos(v) * (0.8 + 0.2 * Math.cos(u))) + hemi * 10,
-        oy: 75  * Math.sin(v) * (0.85 + 0.15 * Math.sin(u)),
-        oz: 85  * Math.cos(v) * Math.sin(u),
-        color: Math.random() > 0.4 ? '#38bdf8' : '#818cf8',
-        r: Math.random() * 1.8 + 0.8,
-        pulse: Math.random() * Math.PI * 2,
-      };
-    });
-
-    let angle = 0;
-    const draw = (t) => {
-      ctx.clearRect(0, 0, W, H);
-      angle += 0.006;
-      const cosA = Math.cos(angle), sinA = Math.sin(angle);
-      const cosB = Math.cos(0.18),  sinB = Math.sin(0.18);
-      const fov = 320, cx = W / 2, cy = H / 2 - 20;
-
-      const pts = nodes.map(n => {
-        // Rotate Y
-        const x1 = n.ox * cosA - n.oz * sinA;
-        const z1 = n.oz * cosA + n.ox * sinA;
-        // Rotate X
-        const y1 = n.oy * cosB - z1 * sinB;
-        const z2 = z1 * cosB + n.oy * sinB;
-        const s  = fov / (fov + z2 + 160);
-        const pulse = Math.sin(t * 0.0025 + n.pulse) * 0.5 + 0.5;
-        return { x: x1 * s + cx, y: y1 * s + cy, z: z2, s, r: n.r * s, color: n.color, pulse };
-      }).sort((a, b) => b.z - a.z);
-
-      // Synaptic lines
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-          const d  = Math.sqrt(dx*dx + dy*dy);
-          if (d < 50 * pts[i].s) {
-            ctx.beginPath();
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
-            ctx.strokeStyle = '#38bdf8';
-            ctx.lineWidth   = 0.7;
-            ctx.globalAlpha = (1 - d / (50 * pts[i].s)) * 0.22 * pts[i].s;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Nodes
-      pts.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * (0.8 + 0.4 * p.pulse), 0, Math.PI * 2);
-        ctx.fillStyle    = p.color;
-        ctx.globalAlpha  = Math.max(0.15, (p.z + 160) / 320) * (0.55 + 0.45 * p.pulse);
-        ctx.shadowBlur   = 10 * p.s;
-        ctx.shadowColor  = p.color;
-        ctx.fill();
-      });
-
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur  = 0;
-      animId = requestAnimationFrame(draw);
-    };
-
-    animId = requestAnimationFrame(draw);
-    return () => cancelAnimationFrame(animId);
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: 'absolute', inset: 0, zIndex: 3,
-        width: '100%', height: '100%',
-        pointerEvents: 'none',
-        opacity: 0.72,
-        mixBlendMode: 'screen',   /* brain glows blend over photo without darkening */
-      }}
-    />
-  );
-}
-
 export default function Hero() {
   // Rotating / Typing role state
   const [roleIndex, setRoleIndex] = useState(0);
@@ -395,39 +298,15 @@ FEATURED PROJECTS
                   backgroundSize: '28px 28px',
                 }} />
 
-                {/* Profile image — white background removed, transparent PNG on dark card */}
+                {/* Profile image with clean dark background */}
                 <img
-                  src="/profile.png"
+                  src="/profile.jpg"
                   alt="Sreya Devi"
                   style={{
                     position: 'relative', zIndex: 1,
                     width: '100%', height: '100%',
                     objectFit: 'cover', objectPosition: 'center top',
-                    filter: 'brightness(1.03) contrast(1.02) saturate(1.05)',
-                  }}
-                />
-
-                {/* ░░ NEURAL BRAIN OVERLAY — live canvas over photo ░░ */}
-                <NeuralOverlay />
-
-                {/* AI scan line sweep */}
-                <div
-                  className="ai-scanline"
-                  style={{
-                    position: 'absolute', left: 0, right: 0, height: '3px',
-                    background: 'linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.0) 10%, rgba(56,189,248,0.7) 50%, rgba(99,102,241,0.7) 80%, transparent 100%)',
-                    filter: 'blur(1px)',
-                    pointerEvents: 'none',
-                  }}
-                />
-
-                {/* Glitch bar */}
-                <div
-                  className="ai-glitch"
-                  style={{
-                    position: 'absolute', top: '35%', left: 0, right: 0, height: 2,
-                    background: 'rgba(56,189,248,0.5)',
-                    pointerEvents: 'none',
+                    borderRadius: 28,
                   }}
                 />
 
