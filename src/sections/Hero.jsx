@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Terminal, Sparkles, FolderGit2 } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
-import NeuralBrainCanvas from '../components/NeuralBrainCanvas';
 import MagneticButton from '../components/MagneticButton';
 
 export default function Hero() {
@@ -172,14 +171,33 @@ FEATURED PROJECTS
             </div>
           </motion.div>
 
-          {/* Right Visual Column: Glowing Neural Network Brain Card (exact match to screenshot) */}
+          {/* Right Visual Column: Profile Photo with glowing card */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 flex justify-center w-full"
           >
-            <NeuralBrainCanvas />
+            <div className="relative group">
+              {/* Outer glow ring */}
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-violet-600 via-sky-400 to-indigo-500 opacity-60 blur-xl group-hover:opacity-80 transition-opacity duration-500" />
+              {/* Card */}
+              <div className="relative rounded-3xl overflow-hidden border border-sky-500/30 shadow-[0_0_60px_rgba(56,189,248,0.2)] bg-[#0b1221]">
+                <img
+                  src="/profile.jpg"
+                  alt="Sreya Devi"
+                  className="w-72 h-80 sm:w-80 sm:h-96 lg:w-96 lg:h-[26rem] object-cover object-top"
+                />
+                {/* Bottom overlay badge */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#060d1a]/90 via-[#060d1a]/50 to-transparent px-5 py-4">
+                  <p className="text-white font-semibold text-sm tracking-wide">{personalData.name}</p>
+                  <p className="text-accent-cyan text-xs font-mono mt-0.5">{personalData.roles[0]}</p>
+                </div>
+              </div>
+              {/* Floating dot accents */}
+              <div className="absolute -top-3 -right-3 w-6 h-6 rounded-full bg-violet-500 blur-sm opacity-80" />
+              <div className="absolute -bottom-3 -left-3 w-5 h-5 rounded-full bg-sky-400 blur-sm opacity-70" />
+            </div>
           </motion.div>
         </div>
       </div>
