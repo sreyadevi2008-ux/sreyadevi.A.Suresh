@@ -286,16 +286,35 @@ FEATURED PROJECTS
                   position: 'absolute', inset: 0,
                   borderRadius: 28,
                   overflow: 'hidden',
-                  border: '1.5px solid rgba(99,102,241,0.35)',
-                  boxShadow: '0 0 60px rgba(99,102,241,0.25), 0 0 0 1px rgba(56,189,248,0.08) inset',
-                  background: '#070f1d',
+                  border: 'none',
+                  boxShadow: '0 0 80px rgba(99,102,241,0.3), 0 0 160px rgba(56,189,248,0.1)',
+                  /* Deep dark background matching portfolio navy */
+                  background: 'linear-gradient(160deg, #040c18 0%, #071122 40%, #0a0f2e 70%, #060d1a 100%)',
                 }}
               >
-                {/* Profile image */}
+                {/* Dark vignette behind image to absorb white bg */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: 'radial-gradient(ellipse at 50% 30%, #0d1a3a 0%, #040c18 100%)',
+                  zIndex: 0,
+                }} />
+                {/* Subtle AI grid pattern overlay */}
+                <div style={{
+                  position: 'absolute', inset: 0, zIndex: 1, opacity: 0.07,
+                  backgroundImage: 'linear-gradient(rgba(56,189,248,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.6) 1px, transparent 1px)',
+                  backgroundSize: '28px 28px',
+                }} />
+                {/* Profile image — multiply blend removes white, reveals dark bg */}
                 <img
                   src="/profile.jpg"
                   alt="Sreya Devi"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                  style={{
+                    position: 'relative', zIndex: 2,
+                    width: '100%', height: '100%',
+                    objectFit: 'cover', objectPosition: 'center top',
+                    mixBlendMode: 'multiply',
+                    filter: 'contrast(1.08) brightness(0.97)',
+                  }}
                 />
 
                 {/* AI scan line sweep */}
