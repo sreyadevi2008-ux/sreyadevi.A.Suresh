@@ -291,14 +291,14 @@ FEATURED PROJECTS
                   background: 'linear-gradient(160deg, #040c18 0%, #071122 50%, #060d1a 100%)',
                 }}
               >
-                {/* AI grid pattern behind image */}
+                {/* AI grid pattern */}
                 <div style={{
                   position: 'absolute', inset: 0, zIndex: 0, opacity: 0.06,
                   backgroundImage: 'linear-gradient(rgba(56,189,248,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.8) 1px, transparent 1px)',
                   backgroundSize: '28px 28px',
                 }} />
 
-                {/* Profile image — natural colours, masked to hide white bg edges */}
+                {/* Profile image — untouched, natural colours */}
                 <img
                   src="/profile.jpg"
                   alt="Sreya Devi"
@@ -307,41 +307,33 @@ FEATURED PROJECTS
                     width: '100%', height: '100%',
                     objectFit: 'cover', objectPosition: 'center top',
                     filter: 'brightness(1.05) contrast(1.03) saturate(1.05)',
-                    /* Tight elliptical mask: face/shoulders fully visible,
-                       white passport border fades into the dark card bg   */
-                    maskImage: `radial-gradient(
-                      ellipse 80% 92% at 50% 42%,
-                      black 0%,
-                      black 52%,
-                      rgba(0,0,0,0.92) 62%,
-                      rgba(0,0,0,0.65) 73%,
-                      rgba(0,0,0,0.25) 85%,
-                      transparent 100%
-                    )`,
-                    WebkitMaskImage: `radial-gradient(
-                      ellipse 80% 92% at 50% 42%,
-                      black 0%,
-                      black 52%,
-                      rgba(0,0,0,0.92) 62%,
-                      rgba(0,0,0,0.65) 73%,
-                      rgba(0,0,0,0.25) 85%,
-                      transparent 100%
-                    )`,
                   }}
                 />
 
-                {/* Dark vignette overlay — burns the remaining white edges to dark */}
+                {/* ── Targeted edge overlays — cover ONLY the white background areas ── */}
+                {/* Top: covers white above head */}
                 <div style={{
-                  position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
-                  background: `
-                    radial-gradient(
-                      ellipse 90% 95% at 50% 42%,
-                      transparent 50%,
-                      rgba(4,12,24,0.45) 72%,
-                      rgba(4,12,24,0.85) 88%,
-                      rgba(4,12,24,0.98) 100%
-                    )
-                  `,
+                  position: 'absolute', top: 0, left: 0, right: 0, height: '32%', zIndex: 2,
+                  background: 'linear-gradient(to bottom, #040c18 0%, #060f1e 30%, rgba(4,12,24,0.7) 60%, transparent 100%)',
+                  pointerEvents: 'none',
+                }} />
+                {/* Left: covers white strip left of hair */}
+                <div style={{
+                  position: 'absolute', top: 0, left: 0, bottom: 0, width: '18%', zIndex: 2,
+                  background: 'linear-gradient(to right, #040c18 0%, rgba(4,12,24,0.8) 40%, transparent 100%)',
+                  pointerEvents: 'none',
+                }} />
+                {/* Right: covers white strip right of hair */}
+                <div style={{
+                  position: 'absolute', top: 0, right: 0, bottom: 0, width: '18%', zIndex: 2,
+                  background: 'linear-gradient(to left, #040c18 0%, rgba(4,12,24,0.8) 40%, transparent 100%)',
+                  pointerEvents: 'none',
+                }} />
+                {/* Bottom: subtle fade for bottom white edge */}
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0, height: '18%', zIndex: 2,
+                  background: 'linear-gradient(to top, #040c18 0%, rgba(4,12,24,0.5) 50%, transparent 100%)',
+                  pointerEvents: 'none',
                 }} />
 
                 {/* AI scan line sweep */}
