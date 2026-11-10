@@ -291,14 +291,14 @@ FEATURED PROJECTS
                   background: 'linear-gradient(160deg, #040c18 0%, #071122 50%, #060d1a 100%)',
                 }}
               >
-                {/* Subtle AI grid pattern on background */}
+                {/* AI grid pattern behind image */}
                 <div style={{
                   position: 'absolute', inset: 0, zIndex: 0, opacity: 0.06,
                   backgroundImage: 'linear-gradient(rgba(56,189,248,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.8) 1px, transparent 1px)',
                   backgroundSize: '28px 28px',
                 }} />
 
-                {/* Profile image — radial mask fades white bg edges to transparent */}
+                {/* Profile image — natural colours, masked to hide white bg edges */}
                 <img
                   src="/profile.jpg"
                   alt="Sreya Devi"
@@ -306,11 +306,43 @@ FEATURED PROJECTS
                     position: 'relative', zIndex: 1,
                     width: '100%', height: '100%',
                     objectFit: 'cover', objectPosition: 'center top',
-                    maskImage: 'radial-gradient(ellipse 82% 88% at 50% 38%, black 55%, rgba(0,0,0,0.6) 72%, transparent 100%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 82% 88% at 50% 38%, black 55%, rgba(0,0,0,0.6) 72%, transparent 100%)',
-                    filter: 'brightness(1.05) contrast(1.04)',
+                    filter: 'brightness(1.05) contrast(1.03) saturate(1.05)',
+                    /* Tight elliptical mask: face/shoulders fully visible,
+                       white passport border fades into the dark card bg   */
+                    maskImage: `radial-gradient(
+                      ellipse 80% 92% at 50% 42%,
+                      black 0%,
+                      black 52%,
+                      rgba(0,0,0,0.92) 62%,
+                      rgba(0,0,0,0.65) 73%,
+                      rgba(0,0,0,0.25) 85%,
+                      transparent 100%
+                    )`,
+                    WebkitMaskImage: `radial-gradient(
+                      ellipse 80% 92% at 50% 42%,
+                      black 0%,
+                      black 52%,
+                      rgba(0,0,0,0.92) 62%,
+                      rgba(0,0,0,0.65) 73%,
+                      rgba(0,0,0,0.25) 85%,
+                      transparent 100%
+                    )`,
                   }}
                 />
+
+                {/* Dark vignette overlay — burns the remaining white edges to dark */}
+                <div style={{
+                  position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
+                  background: `
+                    radial-gradient(
+                      ellipse 90% 95% at 50% 42%,
+                      transparent 50%,
+                      rgba(4,12,24,0.45) 72%,
+                      rgba(4,12,24,0.85) 88%,
+                      rgba(4,12,24,0.98) 100%
+                    )
+                  `,
+                }} />
 
                 {/* AI scan line sweep */}
                 <div
