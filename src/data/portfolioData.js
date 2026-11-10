@@ -113,13 +113,13 @@ export const personalData = {
   journey: [
     {
       id: "portrait",
-      title: "Professional Portrait",
+      title: "My Journey in Tech",
       subtitle: "Aspiring AI Engineer",
       category: "Identity",
       tag: "Focus & Vision",
-      image: "/profile.jpg",
+      image: "/journey-portrait.jpg",
       isPortrait: true,
-      description: "Committed to mastering core computer science foundations and advancing artificial intelligence applications."
+      description: "Dedicated to building intelligent algorithms and robust software systems."
     },
     {
       id: "coding",
@@ -164,16 +164,17 @@ export const personalData = {
       ]
     },
     {
-      degree: "Higher Secondary Education (Class XII - Science & CS)",
+      degree: "Higher Secondary Education (Class XII - Bio Science)",
       institution: "Kerala State Higher Secondary Board",
       location: "Thrissur, Kerala",
       period: "2024 – 2026",
       status: "Completed with Distinction (95%+)",
-      description: "Comprehensive foundational study in Physics, Chemistry, Mathematics, and Computer Science with hands-on lab work in procedural and object-oriented programming.",
+      subjects: ["Physics", "Chemistry", "Biology", "Mathematics", "English"],
+      description: "Completed Plus Two in Bio Science stream. Built strong foundation in Biology and Science, which led me to B.Tech CSE (Artificial Intelligence).",
       highlights: [
-        "Top tier percentile in Mathematics & Computer Science",
-        "School Science Exhibition project on automated systems",
-        "Foundation in computational logic and analytical thinking"
+        "Subjects: Physics, Chemistry, Biology, Mathematics & English",
+        "Completed Plus Two in Bio Science stream with 95%+ distinction",
+        "Strong foundation in Biology and Science that inspired exploration of Artificial Intelligence"
       ]
     },
     {
@@ -190,15 +191,12 @@ export const personalData = {
     }
   ],
   contact: {
-    email: "sreyadevi.ai@example.com",
     location: "Thrissur, Kerala, India",
     institutionAddress: "Thejus Engineering College, Thrissur, Kerala - 680584",
     timezone: "IST (UTC +5:30)",
     socials: [
       { name: "GitHub", url: "https://github.com", icon: "Github" },
-      { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
-      { name: "Instagram", url: "https://instagram.com", icon: "Instagram" },
-      { name: "Email", url: "mailto:sreyadevi.ai@example.com", icon: "Mail" }
+      { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" }
     ]
   },
   aiBot: {
@@ -215,9 +213,9 @@ export const personalData = {
       who: "Sreya Devi is an aspiring Artificial Intelligence Engineer and 1st-year B.Tech CSE (Artificial Intelligence) student at Thejus Engineering College, Thrissur, Kerala. She has a solid foundation in Python, C programming, data manipulation, and machine learning pipelines, and is passionate about solving real-world challenges with intelligent algorithms.",
       skills: "Sreya's core technical stack includes:\n• Languages: Python (90%), C Programming (85%), SQL (75%), HTML/CSS (80%)\n• AI & Data: Machine Learning Foundations, NumPy, Pandas, Matplotlib, Data Visualization\n• Tools & Systems: Git & GitHub, VS Code, Jupyter Notebooks, Linux / Bash CLI.",
       projects: "Sreya has engineered 3 standout projects:\n1. 📊 Student Academic Performance Analyzer (Python, Pandas, Matplotlib) — automated mark intelligence.\n2. 🩺 Smart Healthcare Risk Prediction Model (Scikit-Learn, 88% accuracy) — clinical risk classification.\n3. ⚡ High-Performance Student Record Manager (Pure C, Binary Search Trees) — sub-millisecond lookups.",
-      education: "Sreya is currently pursuing B.Tech CSE in Artificial Intelligence (2026-2030) at Thejus Engineering College, Thrissur, Kerala. She completed Higher Secondary (Science & CS) with 95%+ distinction under the Kerala State Board.",
-      availability: "Yes! Sreya is actively open and available for summer internships, AI/ML research collaborations, and open-source opportunities. You can reach out directly via the contact form or email!",
-      contact: "You can reach Sreya directly at:\n• Email: sreyadevi.ai@example.com\n• Location: Thrissur, Kerala, India\n• Connect on GitHub & LinkedIn via the footer links!"
+      education: "Sreya is currently pursuing B.Tech CSE in Artificial Intelligence (2026-2030) at Thejus Engineering College, Thrissur, Kerala. She completed Higher Secondary in Bio Science (Physics, Chemistry, Biology, Mathematics, English) with 95%+ distinction under the Kerala State Board.",
+      availability: "Yes! Sreya is actively open and available for summer internships, AI/ML research collaborations, and open-source opportunities. You can reach out directly via the message form on this page!",
+      contact: "You can send Sreya a direct message using the contact form on this website, or connect with her on GitHub and LinkedIn!"
     }
   }
 };

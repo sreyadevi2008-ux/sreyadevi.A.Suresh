@@ -61,17 +61,17 @@ export default function AiChatbot() {
     if (q.includes('project') || q.includes('work') || q.includes('portfolio') || q.includes('built')) {
       return responses.projects || `Sreya has created 3 key projects:\n1. Student Academic Performance Analyzer (Python & Pandas)\n2. Smart Healthcare Risk Prediction Model (ML with 88% accuracy)\n3. High-Performance Student Record Manager (Pure C & BSTs).`;
     }
-    if (q.includes('study') || q.includes('college') || q.includes('degree') || q.includes('education') || q.includes('thejus')) {
-      return responses.education || `Sreya studies B.Tech CSE (Artificial Intelligence) at Thejus Engineering College, Thrissur, Kerala (2026-2030). She completed Class XII Science & CS with 95%+ distinction.`;
+    if (q.includes('study') || q.includes('college') || q.includes('degree') || q.includes('education') || q.includes('thejus') || q.includes('plus two') || q.includes('bio')) {
+      return responses.education || `Sreya studies B.Tech CSE (Artificial Intelligence) at Thejus Engineering College, Thrissur, Kerala (2026-2030). She completed Higher Secondary (Class XII) in Bio Science (Physics, Chemistry, Biology, Mathematics, English) with 95%+ distinction.`;
     }
     if (q.includes('intern') || q.includes('hire') || q.includes('available') || q.includes('job') || q.includes('work')) {
       return responses.availability || `Yes! Sreya is actively available for summer internships, student AI collaborations, and engineering roles. Check out the Contact section below!`;
     }
     if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('message')) {
-      return responses.contact || `You can contact Sreya at ${personalData.contact.email} or connect through GitHub and LinkedIn!`;
+      return responses.contact || `You can send Sreya a direct message using the contact form on this page, or connect with her on GitHub and LinkedIn!`;
     }
     if (q.includes('resume') || q.includes('cv')) {
-      return `You can download Sreya's official resume right from the Hero section button, or email her directly at ${personalData.contact.email}!`;
+      return `You can download Sreya's official resume directly using the 'Download Resume' button in the Hero section!`;
     }
 
     return `Sreya Devi is a B.Tech CSE (Artificial Intelligence) student at Thejus Engineering College. You can explore her projects above or ask about her skills, background, and internship availability!`;

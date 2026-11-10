@@ -84,14 +84,14 @@ export default function Journey() {
             transition={{ duration: 0.6 }}
             className="md:col-span-6 lg:col-span-5 group relative rounded-[28px] overflow-hidden border border-white/10 hover:border-violet-500/50 shadow-2xl transition-all duration-500 h-[380px] sm:h-[420px] bg-[#070b16]"
           >
-            {/* Background Image with Zoom on Hover */}
+            {/* Background Image with Zoom on Hover — Clean Face Crop */}
             <img
-              src="/profile.jpg"
-              alt="Sreya Devi Portrait"
-              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+              src="/journey-portrait.jpg"
+              alt="Sreya Devi"
+              className="w-full h-full object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-105"
             />
             {/* Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#040714] via-[#040714]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#040714] via-[#040714]/25 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-tr from-violet-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             {/* Tag Badge Top */}
@@ -105,10 +105,10 @@ export default function Journey() {
             {/* Bottom Caption Overlay */}
             <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 z-10">
               <h3 className="text-xl font-bold text-white tracking-tight mb-1 group-hover:text-cyan-300 transition-colors">
-                Professional Portrait
+                Sreya Devi
               </h3>
               <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
-                Dedicated to mastering AI foundations, algorithms, and practical engineering solutions at Thejus Engineering College.
+                B.Tech CSE (Artificial Intelligence) Student at Thejus Engineering College, Thrissur.
               </p>
             </div>
           </motion.div>

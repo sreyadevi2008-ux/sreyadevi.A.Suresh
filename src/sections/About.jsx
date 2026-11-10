@@ -60,9 +60,9 @@ export default function About() {
                 <div className="relative w-40 h-40 rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 to-[#0e172a] border-2 border-violet-500/40 mb-4 shadow-2xl group-hover:border-cyan-400/50 transition-colors">
                   {/* Photo */}
                   <img
-                    src="/profile.jpg"
+                    src="/journey-portrait.jpg"
                     alt={personalData.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-105"
                   />
                   {/* Floating decorative badge */}
                   <div className="absolute bottom-2 right-2 p-1.5 rounded-lg bg-[#070b16]/90 border border-cyan-400/40 shadow-md">
